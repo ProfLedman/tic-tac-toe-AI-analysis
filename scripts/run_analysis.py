@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Complete analysis script with clear visualizations."""
+"""Complete analysis script with visualization."""
 
 import pickle
 import numpy as np
@@ -53,7 +53,7 @@ def create_clear_performance_plot(results_dict, title):
     """Create a clear performance plot showing which policy wins each matchup."""
     strategies = list(results_dict.keys())
     
-    fig, ax = plt.subplots(figsize=(14, 8))
+    fig, ax = plt.subplots(figsize=(14, 10))
     
     # Prepare data with policy-specific interpretation
     draws = [results_dict[s][0] for s in strategies]
@@ -135,7 +135,11 @@ def create_clear_performance_plot(results_dict, title):
             ax.text(i, max(o_wins, x_wins) + 40, draw_text, 
                    ha='center', va='bottom', fontweight='bold', color='orange', fontsize=11,
                    bbox=dict(facecolor='lightyellow', alpha=0.8, boxstyle='round,pad=0.5'))
-    
+    # Dynamically extend y-axis to accommodate winner labels
+    max_height = max(first_policy_wins + second_policy_wins + draws)
+    ax.set_ylim(0, max_height + 60)
+
+
     plt.tight_layout()
     return fig
 
@@ -190,9 +194,9 @@ def main():
     plt.savefig("results/plots/performance_comparison.png", dpi=300, bbox_inches='tight')
     print("Plot saved to results/plots/performance_comparison.png")
     
-    # Print enhanced results
+    # Print results
     print("\n" + "="*50)
-    print("ENHANCED RESULTS SUMMARY")
+    print("RESULTS SUMMARY")
     print("="*50)
     
     for name, result in results_dict.items():

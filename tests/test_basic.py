@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Basic tests for Tic-Tac-Toe game functionality.
-Efficient, lightweight, and comprehensive without over-engineering.
+Efficient, lightwecdight, and comprehensive without over-engineering.
 """
 
 import numpy as np
